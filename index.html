@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love You</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #f7b733, #fc4a1a);
+            color: #fff;
+            text-align: center;
+        }
+        .container {
+            transition: all 0.5s ease-in-out;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        #yesBtn {
+            background-color: #28a745;
+        }
+        #noBtn {
+            background-color: #dc3545;
+        }
+        /* Styling for second page */
+        .secondPage {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #00d2ff, #3a7bd5);
+            color: #fff;
+        }
+        .animate-icons {
+            font-size: 3rem;
+            margin-top: 20px;
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* No button trick */
+        #noBtn:hover {
+            position: absolute;
+            left: calc(100vw - 200px);
+            top: calc(100vh - 100px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- First page content -->
+    <div class="container">
+        <h1>I LOVE YOU, PIDDU!</h1>
+        <h2>You love me too?</h2>
+        <div class="buttons">
+            <button id="yesBtn">Yes</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+
+    <!-- Second page content -->
+    <div class="secondPage">
+        <h1>Yay! You love me too!</h1>
+        <div class="animate-icons">❤️ 😍 🥰</div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const container = document.querySelector('.container');
+        const secondPage = document.querySelector('.secondPage');
+
+        // Redirect to second page on clicking "Yes"
+        yesBtn.addEventListener('click', function() {
+            container.style.display = 'none';
+            secondPage.style.display = 'flex';
+        });
+
+        // Moving "No" button logic
+        noBtn.addEventListener('mouseenter', function() {
+            noBtn.style.position = 'absolute';
+            const randomX = Math.floor(Math.random() * (window.innerWidth - noBtn.clientWidth));
+            const randomY = Math.floor(Math.random() * (window.innerHeight - noBtn.clientHeight));
+            noBtn.style.left = `${randomX}px`;
+            noBtn.style.top = `${randomY}px`;
+        });
+    </script>
+
+</body>
+</html>
